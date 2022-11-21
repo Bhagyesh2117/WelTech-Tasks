@@ -37,35 +37,40 @@
 
     </div>
 
-
-
-
     <script>
 
         let myItems = [];
         let IsEdit = -1;
-
-
 
         function display() {
 
 
             let MyItemArray = myItems.map(function (value, index) {
 
+                console.log(value)
 
-                return `<div class="row topP15">
+                if (value == "") {
+                    alert("Please enter name")
+
+                }
+                else {
+                    return `<div class="row topP15">
             <div class="col-lg-10">
                 <label for="">${value}</label>
                
             </div>
             <div class="col-lg-2">
-                <button class="" onclick="">Edit</button><button class="" onclick="Delete(${index})">Delete</button>
+                <button class="" onclick="">Edit</button>  <button class="" onclick="Delete(${index})">Delete</button>
             </div>
         </div>`
+                }
             });
             document.getElementById("display").innerHTML = MyItemArray.join(" ")
-            console.log(MyItemArray)
+            document.getElementById("AddText").focus()
+
         }
+
+
 
         function add() {
 
@@ -77,22 +82,17 @@
             document.getElementById("AddText").value = ''
         }
 
-        function Delete(index) {
+        function Delete(delIndex) {
 
-            let myItem = myItems.filter(function(value, index){
+            let myItem = myItems.filter(function (value, index) {
 
-
+                if (index != delIndex) {
+                    return value;
+                }
             })
 
             myItems = myItem
-
-
-
-            let MyText = document.getElementById("AddText").value;
-
-            myItems.pop(MyText);
             display()
-
             document.getElementById("AddText").value = ''
         }
 
