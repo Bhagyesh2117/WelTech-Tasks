@@ -10,26 +10,98 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/bootstrap.min.js"></script>
     <style>
-    .topP50 {
-        padding-top:50px;
-    }
+        .topP50 {
+            padding-top: 50px;
+        }
 
-    .topP15 {
-        padding-top: 15px;
-    }
-</style>
+        .topP15 {
+            padding-top: 15px;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container topP50">
         <div class="row">
             <div class="col-lg-10">
-                <input class="form-control" type="text" name="intext" id="searchText" placeholder="search">
+                <input class="form-control" type="text" name="intext" id="AddText" placeholder="search">
+
             </div>
             <div class="col-lg-2">
-                <button class="form-control">Add</button>
+                <button id="MyClick" class="form-control" onclick="add()">Add</button>
             </div>
         </div>
+        <div id="display">
+
+        </div>
+
     </div>
+
+
+
+
+    <script>
+
+        let myItems = [];
+        let IsEdit = -1;
+
+
+
+        function display() {
+
+
+            let MyItemArray = myItems.map(function (value, index) {
+
+
+                return `<div class="row topP15">
+            <div class="col-lg-10">
+                <label for="">${value}</label>
+               
+            </div>
+            <div class="col-lg-2">
+                <button class="" onclick="">Edit</button><button class="" onclick="Delete(${index})">Delete</button>
+            </div>
+        </div>`
+            });
+            document.getElementById("display").innerHTML = MyItemArray.join(" ")
+            console.log(MyItemArray)
+        }
+
+        function add() {
+
+            let MyText = document.getElementById("AddText").value;
+
+            myItems.push(MyText);
+            display()
+
+            document.getElementById("AddText").value = ''
+        }
+
+        function Delete(index) {
+
+            let myItem = myItems.filter(function(value, index){
+
+
+            })
+
+            myItems = myItem
+
+
+
+            let MyText = document.getElementById("AddText").value;
+
+            myItems.pop(MyText);
+            display()
+
+            document.getElementById("AddText").value = ''
+        }
+
+    </script>
+
+
+
+
+
 </body>
 
 </html>
