@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Edit Program</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        .topP50 {
+            padding-top: 50px;
+        }
+
+        .topP15 {
+            padding-top: 15px;
+        }
+
+        .rightP10 {
+
+            padding-right: 10px;
+        }
+
+        .leftP10 {
+
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container topP50">
+        <table width="100%">
+            <tr>
+                <td class="" align="center">
+                    <label for="Name">Name :</label>
+                </td>
+                <td class="" align="center">
+                    <input class="form-control" type="text" name="name" id="MyName">
+                </td>
+                <td class="" align="center">
+                    <label for="Marks">Marks :</label>
+                </td>
+                <td class="" align="center">
+                    <input class="form-control" maxlength="3" name="marks" id="MyMarks" onkeypress="OnlyNum(event)">
+                </td>
+                <td class="leftP10" align="center">
+                    <button id="MyClick" class="form-control" onclick="add()">Add</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="" align="center" colspan="4">
+                    <input class="form-control" maxlength="3" type="text" name="value" id="value"
+                        onkeypress="OnlyNum(event)">
+                </td>
+                <td class="leftP10" align="center">
+                    <button id="MyClick" class="form-control" onclick="">Change Value</button>
+                </td>
+            </tr>
+        </table>
+
+
+        <table id="display" width="100%">
+
+        </table>
+
+
+    </div>
+    <script>
+
+        function add() {
+
+            let MyName = document.getElementById("MyName").value;
+            let MyMarks = document.getElementById("MyMarks").value;
+            let addText = `<tr>    
+                <td align="center">                    
+                    <input type="checkbox" id="isTrue" >
+                </td>            
+                <td align="center">                    
+                    <input class="form-control incDec" type="text" name="marks" id="name" value="${MyName}" >
+                </td>              
+                <td align="center">
+                    <input class="form-control incDec" maxlength="3" name="marks" id="marks"  value="${MyMarks}">
+                </td>
+                <td class="leftP10" align="center">
+                    <button id="MyClick" class="form-control" onclick="incrment(this)">+</button>
+                </td>
+                <td class="leftP10" align="center">
+                    <button id="MyClick" class="form-control" onclick="">-</button>
+                </td>
+            </tr> `
+
+            document.getElementById("display").innerHTML += addText;
+            document.getElementById("MyName").value = "";
+            document.getElementById("MyMarks").value = ""
+            document.getElementById("MyName").focus();
+        }
+
+        OnlyNum = (data) => {
+
+            if (data.key >= 0 || data.key <= 9) {
+
+            }
+            else {
+                data.preventDefault();
+            }
+        }
+
+        incrment = (BtnValue) => {
+            console.log(BtnValue.parentElement.getElementsByClassName("incDec")[0])
+            let a = parseInt(BtnValue.parentElement.getElementsByClassName("incDec")[0]);
+            BtnValue.parentElement.getElementsByClassName("incDec")[0] = a + 1;
+        }
+
+    </script>
+</body>
+</html>
